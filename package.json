@@ -1,17 +1,10 @@
 {
-  "name": "pkg-i18n",
+  "name": "react-i18n-lite",
   "version": "1.0.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.14.1",
-    "@testing-library/react": "^13.3.0",
-    "@testing-library/user-event": "^13.2.1",
     "lodash.get": "^4.4.2",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-scripts": "5.0.0",
-    "react-transition-group": "^4.4.2",
-    "typescript": "^4.4.2"
+    "react-scripts": "5.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -20,24 +13,6 @@
     "eject": "react-scripts eject",
     "lint": "eslint .",
     "setup-husky": "husky install"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
   },
   "devDependencies": {
     "@types/jest": "^27.0.1",
@@ -56,7 +31,13 @@
     "eslint-plugin-react": "^7.29.4",
     "eslint-plugin-react-hooks": "^4.3.0",
     "husky": "^7.0.4",
-    "lint-staged": ">=10"
+    "lint-staged": ">=10",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^13.3.0",
+    "@testing-library/user-event": "^13.2.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "typescript": "^4.4.2"
   },
   "jest": {
     "collectCoverageFrom": [
