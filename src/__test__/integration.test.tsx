@@ -5,7 +5,7 @@ import { Locales } from 'types'
 import { Interpolations } from 'utils'
 import { setBrowserLanguage } from 'utils/tests'
 
-import TranslationContainer from '..'
+import TranslationContainer from '../components/TranslationContainer'
 
 const locales = {
   'pt-BR': {
