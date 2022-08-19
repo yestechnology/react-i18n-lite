@@ -1,0 +1,19 @@
+image: atlassian/pipelines-awscli:1.21.7
+definitions:
+  services:
+    docker:
+      memory: 7128
+
+pipelines:
+  pull-requests:
+    "**":
+      - parallel:
+          - step:
+              size: 2x
+              name: "Test"
+              script:
+                - docker build .
+              services:
+                - docker
+              caches:
+                - docker
