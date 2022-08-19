@@ -5,7 +5,7 @@ import { useTranslationContext } from 'hooks'
 import { Locales } from 'types'
 import { setSearchParams } from 'utils'
 
-import TranslationContainer from '..'
+import TranslationContainer from '../TranslationContainer'
 
 const locales = {
   'pt-BR': {

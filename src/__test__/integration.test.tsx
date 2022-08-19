@@ -4,7 +4,7 @@ import { useTranslation } from 'hooks'
 import { Locales } from 'types'
 import { Interpolations, setSearchParams } from 'utils'
 
-import TranslationContainer from '..'
+import TranslationContainer from '../components/TranslationContainer'
 
 const locales = {
   'pt-BR': {
