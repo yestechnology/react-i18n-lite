@@ -4,6 +4,7 @@ import typescript from '@rollup/plugin-typescript'
 import { terser } from 'rollup-plugin-terser'
 import external from 'rollup-plugin-peer-deps-external'
 import dts from 'rollup-plugin-dts'
+import del from 'rollup-plugin-delete'
 
 import packageJson from './package.json'
 
@@ -41,6 +42,9 @@ export default [
     input: 'dist/esm/declarations/index.d.ts',
     output: [{ file: 'dist/index.d.ts', format: 'esm' }],
     external: [/\.css$/],
-    plugins: [dts()]
+    plugins: [
+      dts(),
+      del({ hook: 'buildEnd', targets: ['dist/cjs/declarations', 'dist/esm/declarations'] })
+    ]
   }
 ]
