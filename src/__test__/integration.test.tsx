@@ -3,8 +3,7 @@ import { render, screen } from '@testing-library/react'
 import { useTranslation } from '../hooks'
 import { Locales } from '../types'
 import { Interpolations, setBrowserLanguage } from '../utils'
-
-import TranslationContainer from '../components/TranslationContainer'
+import { TranslationContainer } from '../components'
 
 const locales = {
   'pt-BR': {
