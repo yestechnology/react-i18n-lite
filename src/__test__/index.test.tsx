@@ -3,7 +3,7 @@ import { fireEvent, render, screen } from '@testing-library/react'
 
 import { useTranslationContext } from 'hooks'
 import { Locales } from 'types'
-import { setSearchParams } from 'utils'
+import { setBrowserLanguage } from 'utils'
 
 import TranslationContainer from '..'
 
@@ -58,7 +58,7 @@ const ContextTester = () => {
   return <button onClick={updateLanguage}>setLanguage</button>
 }
 
-afterEach(() => { setSearchParams('') })
+beforeEach(() => { setBrowserLanguage('pt-BR') })
 
 it('updates the locale on setLanguage called', () => {
   renderContainer({ children: <ContextTester /> })
@@ -81,8 +81,8 @@ it('updates the locale on setLanguage called', () => {
   })
 })
 
-it('gets the initial locale from the URL', () => {
-  setSearchParams('?lang=en-US')
+it('gets the initial locale from the browser language', () => {
+  setBrowserLanguage('en-US')
 
   renderContainer({ children: <ContextTester /> })
 
@@ -92,8 +92,6 @@ it('gets the initial locale from the URL', () => {
     locales: locales,
     locale: locales['en-US']
   })
-
-  setSearchParams('')
 })
 
 it('sets the html document language', () => {

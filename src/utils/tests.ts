@@ -1,6 +1,6 @@
-export const setSearchParams = (search: string) => {
-  Object.defineProperty(window, 'location', {
+export const setBrowserLanguage = (language: string) => {
+  Object.defineProperty(window, 'navigator', {
     writable: true,
-    value: { ...window.location, search }
+    value: { ...window.navigator, language }
   })
 }

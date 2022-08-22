@@ -2,7 +2,8 @@ import { render, screen } from '@testing-library/react'
 
 import { useTranslation } from 'hooks'
 import { Locales } from 'types'
-import { Interpolations, setSearchParams } from 'utils'
+import { Interpolations } from 'utils'
+import { setBrowserLanguage } from 'utils/tests'
 
 import TranslationContainer from '..'
 
@@ -59,7 +60,7 @@ const renderContainer = (props?: Props, translationProps?: TranslationProps) => 
   )
 }
 
-afterEach(() => { setSearchParams('') })
+beforeEach(() => { setBrowserLanguage('pt-BR') })
 
 it('translates the given key', () => {
   renderContainer()
@@ -91,13 +92,11 @@ it('returns an error message if the key does not exist', () => {
 })
 
 it('gets the initial locale from the URL', () => {
-  setSearchParams('?lang=en-US')
+  setBrowserLanguage('en-US')
 
   renderContainer()
 
   const translatedText = screen.getByText('Good morning')
 
   expect(translatedText).toBeInTheDocument()
-
-  setSearchParams('')
 })
