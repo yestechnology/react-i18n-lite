@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: Run tests
 
 on:
   pull_request:
@@ -12,5 +12,5 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Run tests
+    - name: Run tests within docker container
       run: docker build . --file Dockerfile
