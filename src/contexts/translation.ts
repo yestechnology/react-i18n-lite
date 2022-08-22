@@ -1,6 +1,6 @@
 import { createContext } from 'react'
 
-import { Locale, Locales } from 'types'
+import { Locale, Locales } from '../types'
 
 type TranslationContextValue = {
   language: string
