@@ -1,8 +1,7 @@
+import { ReactNode } from 'react'
 import { renderHook } from '@testing-library/react'
 
-import { TranslationContext } from 'contexts'
-import { ReactNode } from 'react'
-
+import { TranslationContext } from '../../contexts'
 import useTranslation from '../useTranslation'
 
 const locales = {

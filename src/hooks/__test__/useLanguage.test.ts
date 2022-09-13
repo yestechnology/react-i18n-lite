@@ -1,7 +1,6 @@
 import { act, renderHook, waitFor } from '@testing-library/react'
 
-import { setBrowserLanguage } from 'utils'
-
+import { setBrowserLanguage } from '../../utils'
 import { useLanguage } from '..'
 
 beforeEach(() => { setBrowserLanguage('pt-BR') })

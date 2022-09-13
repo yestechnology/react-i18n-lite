@@ -1,8 +1,7 @@
 import { useCallback } from 'react'
 import accessDeepProperty from 'lodash.get'
 
-import { interpolate, Interpolations } from 'utils'
-
+import { interpolate, Interpolations } from '../utils'
 import useTranslationContext from './useTranslationContext'
 
 type Translate = (key: string, interpolations?: Interpolations) => string

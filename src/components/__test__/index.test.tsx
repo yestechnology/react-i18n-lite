@@ -1,11 +1,10 @@
 import { useEffect } from 'react'
 import { fireEvent, render, screen } from '@testing-library/react'
 
-import { useTranslationContext } from 'hooks'
-import { Locales } from 'types'
-import { setBrowserLanguage } from 'utils'
-
-import TranslationContainer from '..'
+import { useTranslationContext } from '../../hooks'
+import { Locales } from '../../types'
+import { setBrowserLanguage } from '../../utils'
+import TranslationContainer from '../TranslationContainer'
 
 const locales = {
   'pt-BR': {

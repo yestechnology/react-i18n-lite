@@ -1,8 +1,8 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo } from 'react'
 
-import { TranslationContext } from 'contexts'
-import { Locales } from 'types'
-import useLanguage from 'hooks/useLanguage'
+import { TranslationContext } from '../contexts'
+import { Locales } from '../types'
+import { useLanguage } from '../hooks'
 
 type Props = {
   locales: Locales,
