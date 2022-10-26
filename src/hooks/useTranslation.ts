@@ -4,7 +4,9 @@ import accessDeepProperty from 'lodash.get'
 import { interpolate, Interpolations } from '../utils'
 import useTranslationContext from './useTranslationContext'
 
-type Translate = (key: string, interpolations?: Interpolations) => string
+type Options = { ignoreError?: boolean }
+
+type Translate = (key: string, interpolations?: Interpolations, options?: Options) => string
 
 export const useTranslation = () => {
   const { language, locale } = useTranslationContext()
@@ -15,10 +17,12 @@ export const useTranslation = () => {
     return errorMessage
   }, [language])
 
-  const t = useCallback<Translate>((key, interpolations) => {
+  const t = useCallback<Translate>((key, interpolations, options = {}) => {
     const rawTranslation = accessDeepProperty(locale, key)
 
     if (typeof rawTranslation !== 'string') {
+      if (options.ignoreError) return ''
+
       return handleTranslationError(key)
     }
 
