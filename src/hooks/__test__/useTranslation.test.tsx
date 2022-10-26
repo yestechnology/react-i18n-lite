@@ -56,3 +56,9 @@ it('returns an error message if the key does not exist', () => {
 
   consoleError.mockRestore()
 })
+
+it('returns an empty string if the key dos not exist and ignoreError is true', () => {
+  const { result } = renderHook(() => useTranslation(), { wrapper: MockTranslationContext })
+
+  expect(result.current.t('bye', {}, { ignoreError: true })).toBe('')
+})
