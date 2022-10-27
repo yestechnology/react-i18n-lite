@@ -127,3 +127,11 @@ const TranslatedComponent = () => {
   )
 }
 ```
+
+### Options
+
+You can pass an `options` object as third argument for `t`. The available keys are:
+
+| Key  |  Type  | Description | Default Value |
+| ------------------- | ------------------- |----------|--------|
+|  ignoreError |  `boolean` | If `true`, when the translation key is not found, no errors will be logged and `t` will return an empty string | `false`
