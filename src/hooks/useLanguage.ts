@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
 type UseLanguage = (supportedLanguages: string[], defaultLanguage: string) => (
   [string, (language: string) => void]
@@ -15,7 +15,7 @@ const useLanguage: UseLanguage = (supportedLanguages: string[], defaultLanguage:
     document.documentElement.lang = language
   }, [language])
 
-  const handleSetLanguage = (language: string) => {
+  const handleSetLanguage = useCallback((language: string) => {
     const isLanguageSupported = supportedLanguages.includes(language)
     const newLanguage = isLanguageSupported ? language : defaultLanguage
     setLanguage(newLanguage)
@@ -23,7 +23,7 @@ const useLanguage: UseLanguage = (supportedLanguages: string[], defaultLanguage:
     if (!isLanguageSupported) {
       console.error('Unsupported language: ', language)
     }
-  }
+  }, [supportedLanguages, defaultLanguage])
 
   return [language, handleSetLanguage]
 }
