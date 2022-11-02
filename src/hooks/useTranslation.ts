@@ -9,7 +9,7 @@ type Options = { ignoreError?: boolean }
 type Translate = (key: string, interpolations?: Interpolations, options?: Options) => string
 
 export const useTranslation = () => {
-  const { language, locale } = useTranslationContext()
+  const { language, setLanguage, locale } = useTranslationContext()
 
   const handleTranslationError = useCallback((key) => {
     const errorMessage = `Missing translation: '${key}'`
@@ -29,7 +29,7 @@ export const useTranslation = () => {
     return interpolate(rawTranslation, interpolations)
   }, [locale, handleTranslationError])
 
-  return { t }
+  return { t, language, setLanguage }
 }
 
 export default useTranslation

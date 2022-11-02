@@ -62,3 +62,15 @@ it('returns an empty string if the key dos not exist and ignoreError is true', (
 
   expect(result.current.t('bye', {}, { ignoreError: true })).toBe('')
 })
+
+it('returns the current language', () => {
+  const { result } = renderHook(() => useTranslation(), { wrapper: MockTranslationContext })
+
+  expect(result.current.language).toBe(translationContextValue.language)
+})
+
+it('returns setLanguage', () => {
+  const { result } = renderHook(() => useTranslation(), { wrapper: MockTranslationContext })
+
+  expect(result.current.setLanguage).toBe(translationContextValue.setLanguage)
+})
