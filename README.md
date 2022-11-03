@@ -6,13 +6,17 @@ Simple, lightweight internationalization tool for React apps
 
 ## Table of Contents
 
-* [Installation](#installation)
-* [Usage](#usage)
-  * [Setup](#setup)
-  * [TranslationContainer props](#translationcontainer-props)
-  * [Building `Locales`](#building-locales)
-  * [`useTranslation`](#usetranslation)
-  * [Interpolating strings](#interpolating-strings)
+- [react-i18n-lite](#react-i18n-lite)
+  - [Table of Contents](#table-of-contents)
+  - [Installation](#installation)
+  - [Usage](#usage)
+    - [Setup](#setup)
+    - [TranslationContainer props](#translationcontainer-props)
+    - [Building `Locales`](#building-locales)
+    - [`useTranslation`](#usetranslation)
+    - [Interpolating strings](#interpolating-strings)
+    - [Options](#options)
+    - [Changing the language](#changing-the-language)
 
 ## Installation
 
@@ -45,10 +49,10 @@ const App = () => {
 
 ### TranslationContainer props
 
-| Prop  |  Type  | Description |
-| ------------------- | ------------------- |----------|
-|  locales |  `Locales` object | An object which keys are strings representing the language and values are the respective `Locale` object. Example: `{'pt-BR': localePtBr, 'en-US': localeEnUs}` (Check [Building `Locales`](#building-locales) section) |
-|  defaultLanguage |  string | The default language set to the system, will be used as initial value if the browser language is not included in `locales` |
+| Prop            | Type             | Description                                                                                                                                                                                                             |
+| --------------- | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| locales         | `Locales` object | An object which keys are strings representing the language and values are the respective `Locale` object. Example: `{'pt-BR': localePtBr, 'en-US': localeEnUs}` (Check [Building `Locales`](#building-locales) section) |
+| defaultLanguage | string           | The default language set to the system, will be used as initial value if the browser language is not included in `locales`                                                                                              |
 
 ### Building `Locales`
 
@@ -132,6 +136,27 @@ const TranslatedComponent = () => {
 
 You can pass an `options` object as third argument for `t`. The available keys are:
 
-| Key  |  Type  | Description | Default Value |
-| ------------------- | ------------------- |----------|--------|
-|  ignoreError |  `boolean` | If `true`, when the translation key is not found, no errors will be logged and `t` will return an empty string | `false`
+| Key         | Type      | Description                                                                                                    | Default Value |
+| ----------- | --------- | -------------------------------------------------------------------------------------------------------------- | ------------- |
+| ignoreError | `boolean` | If `true`, when the translation key is not found, no errors will be logged and `t` will return an empty string | `false`       |
+
+### Changing the language
+
+By default, react-i18n-lite uses `navigator.language` to define the initial app language. If you need to override this behavior, you can use the function `setLanguage` returned by `useTranslation`:
+
+```jsx
+const { language, setLanguage } = useTranslation()
+
+const updateLanguage = () => {
+  setLanguage('pt-BR')
+}
+
+return (
+  <>
+  <span>{language}</span>
+  <button onClick={updateLanguage}>
+    Update language
+  </button>
+  </>
+)
+```
