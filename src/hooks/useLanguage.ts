@@ -5,9 +5,29 @@ type UseLanguage = (supportedLanguages: string[], defaultLanguage: string) => (
 )
 
 const useLanguage: UseLanguage = (supportedLanguages: string[], defaultLanguage: string) => {
-  const browserLanguage = window.navigator.language
-  const isBrowserLangSupported = supportedLanguages.includes(browserLanguage)
-  const initialLanguage = isBrowserLangSupported ? browserLanguage : defaultLanguage
+  const getLocalLanguage = () => {
+    const localLang = localStorage.getItem('lang')
+    if (typeof localLang === 'string') {
+      const isLocalLangSupported = supportedLanguages.includes(localLang)
+
+      return isLocalLangSupported ? localLang : ''
+    }
+    return ''
+  }
+
+  const localLanguage = getLocalLanguage()
+
+  let initialLanguage:string
+
+  if (localLanguage !== '') {
+    initialLanguage = localLanguage
+  } else {
+    const browserLanguage = window.navigator.language
+    const isBrowserLangSupported = supportedLanguages.includes(browserLanguage)
+    initialLanguage = isBrowserLangSupported ? browserLanguage : defaultLanguage
+  }
+
+  localStorage.setItem('lang', initialLanguage)
 
   const [language, setLanguage] = useState(initialLanguage)
 
