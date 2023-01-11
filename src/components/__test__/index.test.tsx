@@ -57,7 +57,10 @@ const ContextTester = () => {
   return <button onClick={updateLanguage}>setLanguage</button>
 }
 
-beforeEach(() => { setBrowserLanguage('pt-BR') })
+beforeEach(() => {
+  setBrowserLanguage('pt-BR')
+  localStorage.removeItem('lang')
+})
 
 it('updates the locale on setLanguage called', () => {
   renderContainer({ children: <ContextTester /> })
@@ -82,6 +85,19 @@ it('updates the locale on setLanguage called', () => {
 
 it('gets the initial locale from the browser language', () => {
   setBrowserLanguage('en-US')
+
+  renderContainer({ children: <ContextTester /> })
+
+  expect(contextValueTester).toHaveBeenLastCalledWith({
+    language: 'en-US',
+    setLanguage: expect.any(Function),
+    locales: locales,
+    locale: locales['en-US']
+  })
+})
+
+it('gets the initial locale from the local Storage language', () => {
+  localStorage.setItem('lang', 'en-US')
 
   renderContainer({ children: <ContextTester /> })
 

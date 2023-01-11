@@ -58,7 +58,10 @@ const renderContainer = (props?: Props, translationProps?: TranslationProps) => 
   )
 }
 
-beforeEach(() => { setBrowserLanguage('pt-BR') })
+beforeEach(() => {
+  setBrowserLanguage('pt-BR')
+  localStorage.removeItem('lang')
+})
 
 it('translates the given key', () => {
   renderContainer()
