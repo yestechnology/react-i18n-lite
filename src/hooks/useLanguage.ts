@@ -5,31 +5,34 @@ type UseLanguage = (supportedLanguages: string[], defaultLanguage: string) => (
 )
 
 const useLanguage: UseLanguage = (supportedLanguages: string[], defaultLanguage: string) => {
-  const getLocalLanguage = () => {
-    const localLang = localStorage.getItem('lang')
-    if (typeof localLang === 'string') {
-      const isLocalLangSupported = supportedLanguages.includes(localLang)
+  const [language, setLanguage] = useState(defaultLanguage)
 
-      return isLocalLangSupported ? localLang : ''
+  const setInitialLanguage = () => {
+    const getInitialLanguage = () => {
+      const storedLanguage = window.localStorage.getItem('lang')
+      if (storedLanguage && supportedLanguages.includes(storedLanguage)) {
+        return storedLanguage
+      }
+
+      const browserLanguage = window.navigator.language
+      if (browserLanguage && supportedLanguages.includes(browserLanguage)) {
+        return browserLanguage
+      }
+
+      return defaultLanguage
     }
-    return ''
+
+    const initialLanguage = getInitialLanguage()
+    setLanguage(initialLanguage)
+    window.localStorage.setItem('lang', initialLanguage)
   }
 
-  const localLanguage = getLocalLanguage()
-
-  let initialLanguage:string
-
-  if (localLanguage !== '') {
-    initialLanguage = localLanguage
-  } else {
-    const browserLanguage = window.navigator.language
-    const isBrowserLangSupported = supportedLanguages.includes(browserLanguage)
-    initialLanguage = isBrowserLangSupported ? browserLanguage : defaultLanguage
-  }
-
-  localStorage.setItem('lang', initialLanguage)
-
-  const [language, setLanguage] = useState(initialLanguage)
+  /**
+   * Because of client-only dependencies,
+   * the initial server-rendered language may differ from the client.
+   * We update it here to prevent hydration mismatches in SSR.
+   */
+  useEffect(setInitialLanguage, [defaultLanguage, supportedLanguages])
 
   useEffect(() => {
     document.documentElement.lang = language
@@ -39,7 +42,7 @@ const useLanguage: UseLanguage = (supportedLanguages: string[], defaultLanguage:
     const isLanguageSupported = supportedLanguages.includes(language)
     const newLanguage = isLanguageSupported ? language : defaultLanguage
     setLanguage(newLanguage)
-    localStorage.setItem('lang', newLanguage)
+    window.localStorage.setItem('lang', language)
 
     if (!isLanguageSupported) {
       console.error('Unsupported language: ', language)
