@@ -42,7 +42,7 @@ const useLanguage: UseLanguage = (supportedLanguages: string[], defaultLanguage:
     const isLanguageSupported = supportedLanguages.includes(language)
     const newLanguage = isLanguageSupported ? language : defaultLanguage
     setLanguage(newLanguage)
-    window.localStorage.setItem('lang', language)
+    window.localStorage.setItem('lang', newLanguage)
 
     if (!isLanguageSupported) {
       console.error('Unsupported language: ', language)
