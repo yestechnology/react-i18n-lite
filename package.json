@@ -18,8 +18,7 @@
     "setup-husky": "husky install"
   },
   "dependencies": {
-    "lodash.get": "^4.4.2",
-    "react-scripts": "5.0.0"
+    "lodash.get": "^4.4.2"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^22.0.2",
@@ -47,6 +46,7 @@
     "lint-staged": ">=10",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-scripts": "5.0.0",
     "rollup": "^2.78.1",
     "rollup-plugin-delete": "^2.0.0",
     "rollup-plugin-dts": "^4.2.2",
