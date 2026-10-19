@@ -7,6 +7,7 @@ type TranslationContextValue = {
   setLanguage: (language: string) => void
   locales: Locales
   locale: Locale
+  cookieKey?: string
 }
 
 const TranslationContext = createContext<TranslationContextValue>({} as TranslationContextValue)
